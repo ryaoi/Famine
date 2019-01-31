@@ -27,7 +27,9 @@ loop_phnum:
 	cmp rax, PT_LOAD
 	jne go_next_phnum
 
-	; handle hre if PT_LOAD	
+	; handle here if PT_LOAD
+	; if 
+    ;
 
 go_next_phnum:
 	mov rax, [ptr]
@@ -72,7 +74,7 @@ handle_elf64:
 	add rdi, [map_ptr]		; rdi = map_ptr+ehdr->e_phoff
 	movzx rsi, word [rax+0x38]	; rsi = ehdr->e_phnum
 	call check_available_segment_padding_space	
-	cmp rax, rax
+	test rax, rax
 	je handle_elf64_end
 
 handle_elf64_bad_end:
